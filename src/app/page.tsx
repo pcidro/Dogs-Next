@@ -1,5 +1,6 @@
 import photosGet from "@/actions/photos-get";
 import Feed from "@/components/feed/feed";
+import React from "react";
 
 export default async function Home() {
   const data = await photosGet();
