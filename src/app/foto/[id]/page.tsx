@@ -1,12 +1,31 @@
+import photoGet from "@/actions/photo-get";
+import PhotoContent from "@/components/photo/photo-content";
+import { notFound } from "next/navigation";
+
 type paramsProps = {
   params: {
-    id: number;
+    id: string;
   };
 };
+
+export async function generateMetadata({ params }: paramsProps) {
+  const { data } = await photoGet(params.id);
+  if (!data)
+    return {
+      title: "Fotos",
+    };
+
+  return {
+    title: data.photo.title,
+  };
+}
+
 export default async function FotoIdPage({ params }: paramsProps) {
+  const { data } = await photoGet(params.id);
+  if (!data) return notFound();
   return (
-    <div>
-      <h1>foto id: {params.id}</h1>
-    </div>
+    <section className="container mainContainer">
+      <PhotoContent data={data} single={true} />
+    </section>
   );
 }

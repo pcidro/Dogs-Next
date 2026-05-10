@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "./feed.module.css";
 
 export default function FeedPhotos({ photos }: { photos: Photo[] }) {
+  if (!photos) return null;
   return (
     <ul className={`${styles.feed} animeLeft`}>
       {photos.map((photo, index) => (

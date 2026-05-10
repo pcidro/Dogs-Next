@@ -1,14 +1,35 @@
-"use client";
+import photosGet from "@/actions/photos-get";
+import userGet from "@/actions/user-get";
+import Feed from "@/components/feed/feed";
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = {
+  title: "Conta | Dogs",
+};
 
-import { useUser } from "@/context/usercontext";
-import React from "react";
-
-export default function ContaPage() {
-  const { user } = useUser();
-  console.log(user);
+export default async function ContaPage() {
+  const { data: user } = await userGet();
+  const { data } = await photosGet({ user: user?.username });
   return (
     <div>
-      <h1>Conta {user?.nome}</h1>
+      {data?.length ? (
+        <Feed photos={data} user={user?.username} />
+      ) : (
+        <div>
+          <p
+            style={{ color: "#444", fontSize: "1.25rem", marginBottom: "1rem" }}
+          >
+            Nenhuma foto encontrada
+          </p>
+          <Link
+            style={{ display: "inline-block" }}
+            className="button"
+            href={`/conta/postar`}
+          >
+            Postar foto
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

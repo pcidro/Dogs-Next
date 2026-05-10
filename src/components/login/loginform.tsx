@@ -34,6 +34,7 @@ export default function Loginform() {
       window.location.href = "/conta";
     }
   }, [state.ok]);
+
   return (
     <>
       <form className={styles.form} action={action}>

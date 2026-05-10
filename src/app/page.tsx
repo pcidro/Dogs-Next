@@ -3,11 +3,11 @@ import Feed from "@/components/feed/feed";
 import React from "react";
 
 export default async function Home() {
-  const data = await photosGet();
+  const { data } = await photosGet();
 
   return (
     <section className="container mainContainer">
-      <Feed photos={data} />
+      {data && <Feed photos={data} />}
     </section>
   );
 }
