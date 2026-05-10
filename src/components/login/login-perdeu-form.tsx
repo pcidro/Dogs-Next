@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import Button from "../forms/button";
 import Input from "../forms/input";
@@ -9,6 +10,7 @@ import PasswordLost from "@/actions/password-lost";
 
 function FormButton() {
   const { pending } = useFormStatus();
+
   return (
     <>
       {pending ? (
@@ -21,6 +23,12 @@ function FormButton() {
 }
 
 export default function LoginPerdeuform() {
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    setUrl(window.location.href.replace("perdeu", "resetar"));
+  }, []);
+
   const [state, action] = useFormState(PasswordLost, {
     ok: false,
     error: "",
@@ -31,13 +39,11 @@ export default function LoginPerdeuform() {
     <>
       <form className={styles.form} action={action}>
         <Input label="Usuário / Email" name="login" type="text" />
-        <input
-          type="hidden"
-          name="url"
-          value={`${window.location.href.replace("perdeu", "resetar")}`}
-        />
+
+        <input type="hidden" name="url" value={url} />
 
         <ErrorMessage error={state.error} />
+
         {state.ok ? (
           <p className={styles["perdeu-text-email"]}>Email enviado!</p>
         ) : (
