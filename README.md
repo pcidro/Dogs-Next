@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dogs Next
 
-## Getting Started
+Dogs Next é uma rede social para cachorros feita com Next.js. A ideia é simples: criar um espaço onde os usuários podem postar fotos dos seus dogs, ver publicações de outros perfis, comentar e acompanhar os acessos das próprias fotos.
 
-First, run the development server:
+Deploy: https://dogs-next-dun.vercel.app/
+
+## Sobre o projeto
+
+Esse projeto foi desenvolvido como uma aplicação web completa, com autenticação, rotas protegidas, feed de fotos, páginas de perfil e uma área de conta para gerenciar postagens.
+
+Os dados de usuários, fotos, comentários e estatísticas vêm de uma API externa, o que deixou o projeto mais próximo de uma aplicação real.
+
+## Funcionalidades
+
+- Cadastro e login de usuários
+- Recuperação e redefinição de senha
+- Feed com fotos dos cachorros
+- Scroll infinito no feed
+- Página individual para cada foto
+- Comentários nas publicações
+- Perfil público dos usuários
+- Área logada com fotos do usuário
+- Upload de novas fotos com nome, peso e idade
+- Exclusão de fotos próprias
+- Página de estatísticas com gráficos de acessos
+- Layout responsivo
+
+## Tecnologias usadas
+
+- Next.js
+- React
+- TypeScript
+- CSS Modules
+- Victory, para os gráficos
+- Vercel, para o deploy
+
+## Como rodar localmente
+
+Depois de clonar o projeto, instale as dependências:
+
+```bash
+npm install
+```
+
+No estado atual do projeto, não é necessário configurar variáveis de ambiente.
+
+Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Depois é só abrir:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Aprendizados
 
-## Learn More
+Esse projeto foi uma boa oportunidade para praticar o uso do Next.js em uma aplicação com fluxo completo de usuário, indo além de páginas estáticas.
 
-To learn more about Next.js, take a look at the following resources:
+Um dos pontos mais importantes foi trabalhar com Server Actions. Elas foram usadas para lidar com ações como login, cadastro, logout, envio de fotos, comentários, recuperação de senha e exclusão de publicações. Isso ajudou bastante a entender como deixar parte da lógica no servidor, trabalhar com cookies de autenticação e manter os formulários mais integrados ao próprio Next.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Outro aprendizado importante foi a manipulação de uma API externa. O projeto precisa enviar dados em formatos diferentes, como `FormData` no upload de fotos, lidar com token nas requisições autenticadas, tratar erros de resposta e atualizar os dados da interface depois de algumas ações, como ao postar ou apagar uma foto.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Também deu para praticar rotas dinâmicas, páginas protegidas, componentes reutilizáveis, estados de carregamento, validações simples de formulário e gráficos para exibir as estatísticas das fotos.
